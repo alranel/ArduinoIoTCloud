@@ -74,7 +74,7 @@ void stm32h7_setRTC(unsigned long time);
 unsigned long stm32h7_getRTC();
 #endif
 
-#ifdef ARDUINO_ARCH_ESP32
+#if defined (ARDUINO_ARCH_ESP32) || defined (ARDUINO_ARCH_RP2040)
 void esp32_initRTC();
 void esp32_setRTC(unsigned long time);
 unsigned long esp32_getRTC();
@@ -328,7 +328,7 @@ void TimeServiceClass::initRTC()
   rp2040_connect_initRTC();
 #elif defined (BOARD_STM32H7)
   stm32h7_initRTC();
-#elif defined (ARDUINO_ARCH_ESP32)
+#elif defined (ARDUINO_ARCH_ESP32) || defined (ARDUINO_ARCH_RP2040)
   esp32_initRTC();
 #elif ARDUINO_ARCH_ESP8266
   esp8266_initRTC();
@@ -345,7 +345,7 @@ void TimeServiceClass::setRTC(unsigned long time)
   rp2040_connect_setRTC(time);
 #elif defined (BOARD_STM32H7)
   stm32h7_setRTC(time);
-#elif defined (ARDUINO_ARCH_ESP32)
+#elif defined (ARDUINO_ARCH_ESP32) || defined (ARDUINO_ARCH_RP2040)
   esp32_setRTC(time);
 #elif ARDUINO_ARCH_ESP8266
   esp8266_setRTC(time);
@@ -362,7 +362,7 @@ unsigned long TimeServiceClass::getRTC()
   return rp2040_connect_getRTC();
 #elif defined (BOARD_STM32H7)
   return stm32h7_getRTC();
-#elif defined (ARDUINO_ARCH_ESP32)
+#elif defined (ARDUINO_ARCH_ESP32) || defined (ARDUINO_ARCH_RP2040)
   return esp32_getRTC();
 #elif ARDUINO_ARCH_ESP8266
   return esp8266_getRTC();
@@ -456,7 +456,7 @@ unsigned long stm32h7_getRTC()
 }
 #endif
 
-#ifdef ARDUINO_ARCH_ESP32
+#if defined (ARDUINO_ARCH_ESP32) || defined (ARDUINO_ARCH_RP2040)
 void esp32_initRTC()
 {
   //configTime(0, 0, "time.arduino.cc", "pool.ntp.org", "time.nist.gov");
